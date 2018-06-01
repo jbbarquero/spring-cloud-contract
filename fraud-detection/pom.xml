@@ -89,6 +89,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-contract-maven-plugin</artifactId>
+				<version>2.0.0.RC2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<baseClassForTests>com.malsolo.springframework.cloud.contract.frauddetection.BaseClass</baseClassForTests>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -101,7 +110,26 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>spring-milestones-libs</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
 	</repositories>
 
+	<!-- Unnecessary if you're using Spring Cloud Stub Runner only -->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-milestones-lib</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/libs-milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>
