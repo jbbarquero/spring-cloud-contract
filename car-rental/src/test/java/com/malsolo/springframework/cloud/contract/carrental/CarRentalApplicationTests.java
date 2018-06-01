@@ -35,4 +35,20 @@ public class CarRentalApplicationTests {
 		BDDAssertions.then(entity.getBody()).isEqualTo(json);
 
 	}
+
+    @Test
+    public void test_should_return_all_frauds_integration() {
+        String json = "[\"Javier\",\"Beneito\"]";
+
+        WireMock.stubFor(WireMock.get(WireMock.urlEqualTo("/frauds"))
+                .willReturn(WireMock.aResponse().withBody(json).withStatus(201)));
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> entity = restTemplate
+                .getForEntity("http://localhost:8082/fraud", String.class);
+
+        BDDAssertions.then(entity.getStatusCodeValue()).isEqualTo(201);
+        BDDAssertions.then(entity.getBody()).isEqualTo(json);
+
+    }
 }
